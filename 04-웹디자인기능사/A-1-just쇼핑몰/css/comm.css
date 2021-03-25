@@ -1,0 +1,393 @@
+@charset "UTF-8";
+
+* { 
+    margin: 0; padding: 0;
+  font-size: 14px;
+   line-height: 1.5; 
+  color: #222328;
+  text-decoration: none; 
+  box-sizing: border-box;
+  list-style: none;
+}
+
+/* comm */
+.blind {
+    overflow: hidden;
+    font-size: 0;  /* 글씨가 안보이게 */
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+/* 비활성화 탭 */
+.tab .tit-tab a {
+    display: block;
+    height: 50px;
+    background-color: #eee;
+    text-align: center;
+    line-height: 50px;
+    border-bottom: 3px solid #002866;  /* 공지사항&갤러리 밑에 선을 그어주는거 */
+}
+
+/* 활성화 탭 */
+.tab .on .tit-tab a {
+    background: #002866;
+    color: #fff;
+}
+
+.tab .cont-tab {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 360px;
+}
+
+.tab .on .cont-tab {
+    display: block;
+}
+
+.tab {
+    position: relative;
+}
+
+.wrap {
+    width: 1200px;
+    margin: 0 auto; /* 가운데 정렬 */
+    /* background-color: #eee; */
+}
+
+header { 
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    background-color: #fff;
+}
+
+.logo a {
+    display: block;
+    width: 125px;
+    height: 100px;
+    background: url(../images/logo-kakaoi.svg) 0 50% no-repeat;
+    text-indent: -9999px;
+}
+
+footer .logo {
+    margin-left: 10px;
+} 
+/* 만약에 이미지를 바꾸게 된다면 
+footer .logo a {
+    background-image: url();
+    이렇게 하고 적으면 된다.
+    */
+
+nav {
+    /* width: 40%; */
+    display: flex;
+    align-items: center;
+    /* margin-right: -40px; */
+    /* .nav-depth1 > li > a 여기에 효과를 준게 있기 때문에  margin-right: -40px; 이걸 적어줘야 메뉴가 딱 맞게 떨어 진다. */
+}
+
+.nav-depth1 { 
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav-depth1 > li {
+    position: relative;
+}
+
+.nav-depth1 > li > a {
+    display: block;
+    height: 100px;
+    padding: 0 40px;
+    /* 
+    height: 60px;
+    padding: 40px 40px 0; 이렇게 적어줘도 되고 
+    height: 20px;
+    padding: 40px 40px; 이렇게 적어줘도 되고
+    그러면 글씨가 가운대 정렬이 된다. 
+    그대신 맨위(* 여기에 준 효과)에 box-sizing: border-box; 이걸 없앨 경우에 쓰는 방법이다. */
+
+    /* text 수직 가운데 정렬   line-height값을 엄마 태그의 높이값 */
+    line-height: 100px;
+    /* height: 100px;
+    padding: 0 40px; 이상태로 할거면  
+    line-height: 100px;  이걸 적어줘야 글씨가가운대로 오게 된다. 
+    그대신 맨위(* 여기에 준 효과)에 box-sizing: border-box; 이걸 없앨 경우에 쓰는 방법이다. */
+}
+
+.nav-depth1 > li:hover > a {
+    color: rosybrown;
+    border-bottom: 3px solid rosybrown;
+}
+
+/* mouse-out */
+.nav-depth2 { 
+    overflow: hidden;
+    /* display: none;  */
+    /* 맨처음 코드를 짤때 메뉴가 안보이게 만들어 놓고 메뉴를 조절 할때 주석 처리로 해놓고 밑에 쓰면 된다. */
+    position: absolute;
+    top: 100px;
+    left: 0;
+    z-index: 100;
+    /* background: #fff; */
+    width: 100%;
+    padding-top: 0;
+    height: 0;
+    transition: all .5s;
+}
+
+/* mouse-over */
+nav:hover .nav-depth2, nav:hover .nav-bg {
+    /* display: block; */
+    padding-top: 10px;
+    height: 135px;
+}
+
+.nav-depth2 a {
+    /* 메뉴를 가운데정렬하고  */
+    display: block;
+    padding: 4px 0;
+    text-align: center;
+}
+
+.nav-depth2 a:hover {
+    background: tomato;
+    color: #fff;
+}
+
+.nav-bg {
+    /* display: none; */
+    position: absolute;
+    top: 100px;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 0;
+    border-top: 1px solid tomato;
+    background: #fff;
+    transition: height .5s;
+}
+
+.slide {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+
+    /* 
+    position: relative;  = .slide ul 에 position: absolute; top: 0 left: 0; 얘네를 주어서 무조건 쓰면 부모한테 적어줘야 하기 때문에 적어준거고
+    overflow: hidden;  = 얘는 그림이 일자로 되게 적은거고
+    height: 300px; = 얘는 밑의 공지사항 등 보이게 
+
+    */
+}
+
+.slide ul {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.container { 
+    display: flex;
+    justify-content: space-between;
+    height: 200px;
+    /* 원래 맨위의 
+    * {
+        box-sizing: border-box; 이걸 주석처리 하고 안 적었는데
+     } 
+     height: 200px; 이걸 적어주므로 주석 처리 한걸 다시 풀어줘야 한다.
+    
+    * {
+        box-sizing: border-box;
+     }
+    이걸 안적어 주고 height: px; 이걸 적어주고 싶다면 180으로 적어주면 된다.
+    하지만 이것보단 위에걸 선호 한다.
+     */
+    padding: 10px 0;
+}
+
+.container .tab, .container > section { 
+    width: 30%;
+}
+
+.container .tab {
+    display: flex;
+    /* 공지사항&갤러리를 일자로  */
+}
+
+.sec-bbs {
+    width: 50%;
+}
+
+.sec-bbs .cont-tab a {
+    display: block;
+    padding: 4px 0;     /* 공지사항 글씨 위,아래의 공백 */
+    white-space: nowrap;   /* 글씨가 두줄 로 된다면 이걸 적어주면 한줄이 된다.*/
+    overflow: hidden;
+    text-overflow: ellipsis; /* 글씨 끝에 점점점 표시 법 */ 
+}
+
+.sec-bbs .cont-tab a::before {
+    display: inline-block;
+    content: '';
+    width: 5px;
+    height: 5px;
+    margin: -5px 5px 0 0; /* 점 옆에 공간이 생기게 */
+    background: red; 
+    vertical-align: middle;
+}
+
+.sec-gallery {
+    width: 50%;
+}
+
+.sec-gallery ul {
+    display: flex;
+    justify-content: space-between; /* 갤러리에 있는 이미지가 간격이 있게 */
+}
+
+.sec-gallery li {
+    width: 30%;
+}
+
+.sec-gallery a {
+    display: block;
+}
+
+.sec-gallery img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    object-position: 100% 50%;
+}
+
+.sec-bnr a {
+    display: block; /* 홈페이지를 열였을경우에 이미지를 클릭해서 보면 이미지와 밑에 공간이 따로 놀기 때문에 블럭을 잡아줘야 하면서 밑에 가로 값을 넣어줘야 한다. */
+}
+
+.sec-bnr img {
+    width: 360px;
+    height: 180px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    /* 
+    width: 360px;
+    height: 180px;
+    이렇게만 적으면 이미지가 작아지므로 딱 맞게 집어넣을 라면 object-fit: cover; 이걸 적어주고 object-position: 50% 50%; 이걸 0 0으로 넣으면 글씨가 짧아지므로 50% 50%으로 넣어 주는거다.
+    */
+}
+
+.sec-goto .cont {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.sec-goto a {
+    display: block;
+    height: 50px;
+    padding-left: 60px;  /* 글씨가 아이콘에 겹쳐 보이는데 옆으로 보이게 할라는거 */
+    line-height: 50px;  /* 이걸 적어줘야 아이콘 옆에 글씨가 가운데 정렬 된다.*/
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+
+.sec-goto li:first-child a {
+    background-image: url(../images/ico-goto1.png);
+}
+
+.sec-goto li:nth-child(2) a {
+    background-image: url(../images/ico-goto2.png);
+}
+
+.sec-goto li:nth-child(3) a {
+    background-image: url(../images/ico-goto3.png);
+}
+
+.sec-goto li:last-child a {
+    background-image: url(../images/ico-goto4.png);
+}
+
+.sec-goto .lst-goto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.lst-goto li {
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #999;
+ }
+
+ .copyright {
+     margin-top: 40px;
+     color: #fff;
+ }
+
+.lst-sns {
+    display: flex;
+    margin-top: 20px;
+}
+
+.lst-sns a {
+    display: block;
+    padding: 20px;
+    color: #fff;
+}
+
+.modal-wrap {
+    display: none;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 110;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-wrap .inner {
+    position: relative;
+    width: 668px;
+    height: 553px;
+}
+
+.modal-wrap img {
+    /* overflow: hidden; */
+    border-radius: 33px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modal-wrap button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 70px;
+    height: 70px;
+    background: #fff;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-wrap .las {
+    display: block;
+    font-size: 2em;
+}
